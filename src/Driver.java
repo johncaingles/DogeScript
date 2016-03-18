@@ -11,6 +11,7 @@ public class Driver {
 		new MainFrame("DogeScript Midterm Activity").renderView("Main Menu");
 		int x = 1+(+5);
 		System.out.println(x);
+		System.out.println("Git Test");
 	}
 
 }
