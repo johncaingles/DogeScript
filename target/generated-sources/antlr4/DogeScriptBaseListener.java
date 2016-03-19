@@ -16,42 +16,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTopPrior(@NotNull DogeScriptParser.TopPriorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTopPrior(@NotNull DogeScriptParser.TopPriorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLowPrior(@NotNull DogeScriptParser.LowPriorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLowPrior(@NotNull DogeScriptParser.LowPriorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterHighPrior(@NotNull DogeScriptParser.HighPriorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitHighPrior(@NotNull DogeScriptParser.HighPriorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterStart(@NotNull DogeScriptParser.StartContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,30 +23,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStart(@NotNull DogeScriptParser.StartContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterExpr(@NotNull DogeScriptParser.ExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExpr(@NotNull DogeScriptParser.ExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSignInt(@NotNull DogeScriptParser.SignIntContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSignInt(@NotNull DogeScriptParser.SignIntContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
