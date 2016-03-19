@@ -16,22 +16,37 @@ public class DogeScriptParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		WS=1, IntDataType=2, CharDataType=3, BoolDataType=4, StringDataType=5, 
-		Spc=6, Terminator=7, VarDecStarter=8, FuncStarter=9, ConstantStarter=10, 
-		AssOp=11, IfKeyword=12, ElseKeyword=13, ElseIfKeyword=14, EventLoopKeyword=15, 
-		CountLoopKeyword=16, RepeatUntilLoopKeyword=17, VoidKeyword=18, MainKeyword=19, 
-		Comma=20, NullKeyword=21, BoolLit=22, AddOp=23, SubOp=24, MulOp=25, DivOp=26, 
-		ModOp=27, EquaOp=28, GreaterThanOp=29, LessThanOp=30, GreaterThanEqualTo=31, 
-		LessThanEqualTo=32, NotEqualToOp=33, AndOp=34, OrOp=35, IncrementOp=36, 
-		DecrementOp=37, OpenBrace=38, CloseBrace=39, OpenParenthesis=40, CloseParenthesis=41, 
-		ExprEnd=42;
+		CODEBLOCK=1, ALL_POSSIBLE=2, SINGLE_ALL_POSSIBLE=3, AFTERTHOUGHT_STATEMENT=4, 
+		FUNCTION_DECLARATION=5, FUNCTION_DECLARATION_PARAMETERS=6, VARIABLE_DECLARATION=7, 
+		LITERAL=8, DATATYPE=9, VARIABLE_INSTANCE=10, RETURNS_VALUE=11, EXPRESSION=12, 
+		LOWPRIOR=13, HIGHPRIOR=14, SIGNINT=15, TOPPRIOR=16, ASSIGNMENT_STATEMENT=17, 
+		CONDITIONAL_STATEMENT=18, START_CONDITION=19, END_CONDITION=20, CONTINUE_CONDITION=21, 
+		CONDITION=22, COMPARISON=23, LOGICAL_OPERATOR=24, LOOP_STATEMENT=25, EVENT_LOOP_STATEMENT=26, 
+		COUNT_LOOP_STATEMENT=27, REPEATUNTIL_LOOP_STATEMENT=28, FUNCTION_CALL=29, 
+		FUNCTION_CALL_PARAMETERS=30, WS=31, IntDataType=32, CharDataType=33, BoolDataType=34, 
+		StringDataType=35, Terminator=36, VarDecStarter=37, FuncStarter=38, ConstantStarter=39, 
+		AssOp=40, IfKeyword=41, ElseKeyword=42, ElseIfKeyword=43, EventLoopKeyword=44, 
+		CountLoopKeyword=45, RepeatUntilLoopKeyword=46, VoidKeyword=47, MainKeyword=48, 
+		Comma=49, NullKeyword=50, BoolLit=51, AddOp=52, SubOp=53, MulOp=54, DivOp=55, 
+		ModOp=56, EquaOp=57, GreaterThanOp=58, LessThanOp=59, GreaterThanEqualTo=60, 
+		LessThanEqualTo=61, NotEqualToOp=62, AndOp=63, OrOp=64, IncrementOp=65, 
+		DecrementOp=66, OpenBrace=67, CloseBrace=68, OpenParenthesis=69, CloseParenthesis=70, 
+		IntLit=71, FloatLit=72, Array=73, VarIdentifier=74, EndOfFile=75;
 	public static final String[] tokenNames = {
-		"<INVALID>", "WS", "'int'", "'char'", "'boolean'", "'string'", "' '", 
+		"<INVALID>", "CODEBLOCK", "ALL_POSSIBLE", "SINGLE_ALL_POSSIBLE", "AFTERTHOUGHT_STATEMENT", 
+		"FUNCTION_DECLARATION", "FUNCTION_DECLARATION_PARAMETERS", "VARIABLE_DECLARATION", 
+		"LITERAL", "DATATYPE", "VARIABLE_INSTANCE", "RETURNS_VALUE", "EXPRESSION", 
+		"LOWPRIOR", "HIGHPRIOR", "SIGNINT", "TOPPRIOR", "ASSIGNMENT_STATEMENT", 
+		"CONDITIONAL_STATEMENT", "START_CONDITION", "END_CONDITION", "CONTINUE_CONDITION", 
+		"CONDITION", "COMPARISON", "LOGICAL_OPERATOR", "LOOP_STATEMENT", "EVENT_LOOP_STATEMENT", 
+		"COUNT_LOOP_STATEMENT", "REPEATUNTIL_LOOP_STATEMENT", "FUNCTION_CALL", 
+		"FUNCTION_CALL_PARAMETERS", "WS", "'int'", "'char'", "'boolean'", "'string'", 
 		"'wow'", "'such'", "'much'", "'very'", "'as'", "'rily'", "'but'", "'but rily'", 
 		"EventLoopKeyword", "CountLoopKeyword", "RepeatUntilLoopKeyword", "'void'", 
 		"'main'", "','", "'null'", "BoolLit", "'+'", "'-'", "'*'", "'/'", "'%'", 
 		"'is'", "'>'", "'<'", "'>='", "'<='", "'!='", "'and'", "'or'", "'++'", 
-		"'--'", "'{'", "'}'", "'('", "')'", "'$'"
+		"'--'", "'{'", "'}'", "'('", "')'", "IntLit", "FloatLit", "Array", "VarIdentifier", 
+		"'$'"
 	};
 	public static final int
 		RULE_start = 0;
@@ -59,8 +74,18 @@ public class DogeScriptParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class StartContext extends ParserRuleContext {
+		public TerminalNode EndOfFile() { return getToken(DogeScriptParser.EndOfFile, 0); }
+		public TerminalNode CloseBrace() { return getToken(DogeScriptParser.CloseBrace, 0); }
+		public TerminalNode OpenParenthesis() { return getToken(DogeScriptParser.OpenParenthesis, 0); }
+		public TerminalNode DATATYPE() { return getToken(DogeScriptParser.DATATYPE, 0); }
+		public TerminalNode CloseParenthesis() { return getToken(DogeScriptParser.CloseParenthesis, 0); }
+		public TerminalNode VarDecStarter() { return getToken(DogeScriptParser.VarDecStarter, 0); }
 		public TerminalNode FuncStarter() { return getToken(DogeScriptParser.FuncStarter, 0); }
 		public TerminalNode VoidKeyword() { return getToken(DogeScriptParser.VoidKeyword, 0); }
+		public TerminalNode MainKeyword() { return getToken(DogeScriptParser.MainKeyword, 0); }
+		public TerminalNode OpenBrace() { return getToken(DogeScriptParser.OpenBrace, 0); }
+		public TerminalNode Terminator() { return getToken(DogeScriptParser.Terminator, 0); }
+		public TerminalNode VarIdentifier() { return getToken(DogeScriptParser.VarIdentifier, 0); }
 		public StartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -83,6 +108,16 @@ public class DogeScriptParser extends Parser {
 			{
 			setState(2); match(FuncStarter);
 			setState(3); match(VoidKeyword);
+			setState(4); match(MainKeyword);
+			setState(5); match(OpenParenthesis);
+			setState(6); match(CloseParenthesis);
+			setState(7); match(OpenBrace);
+			setState(8); match(VarDecStarter);
+			setState(9); match(DATATYPE);
+			setState(10); match(VarIdentifier);
+			setState(11); match(Terminator);
+			setState(12); match(CloseBrace);
+			setState(13); match(EndOfFile);
 			}
 		}
 		catch (RecognitionException re) {
@@ -97,9 +132,11 @@ public class DogeScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3,\b\4\2\t\2\3\2\3"+
-		"\2\3\2\3\2\2\2\3\2\2\2\6\2\4\3\2\2\2\4\5\7\13\2\2\5\6\7\24\2\2\6\3\3\2"+
-		"\2\2\2";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3M\22\4\2\t\2\3\2\3"+
+		"\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\2\2\3\2\2\2\20\2\4"+
+		"\3\2\2\2\4\5\7(\2\2\5\6\7\61\2\2\6\7\7\62\2\2\7\b\7G\2\2\b\t\7H\2\2\t"+
+		"\n\7E\2\2\n\13\7\'\2\2\13\f\7\13\2\2\f\r\7L\2\2\r\16\7&\2\2\16\17\7F\2"+
+		"\2\17\20\7M\2\2\20\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
