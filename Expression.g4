@@ -41,7 +41,7 @@ topPrior returns [int res]:
 		;
 		
 /* Lexical Specs */
-
+WS: [ \t\r\n]+ -> skip;
 //integer literal
 IntLit :[0-9]+;
 

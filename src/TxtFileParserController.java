@@ -42,7 +42,7 @@ public class TxtFileParserController {
 	                new BufferedReader(fileReader);
 
 	            while((line = bufferedReader.readLine()) != null) {
-	            	line = line.replaceAll(" ", "");
+	            	//line = line.replaceAll(" ", "");
 	            	listOfInputs.add(line);
 	            }   
 	            for(String linya : listOfInputs){

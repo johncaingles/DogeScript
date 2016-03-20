@@ -8,7 +8,22 @@ public class DriverTest {
 		// TODO Auto-generated method stub
 				try{
 					//ANTLRInputStream input = new ANTLRInputStream( System.in);
-					String expr = "much void main () { such int xam wow }$";
+					String expr = "much void main () { such int x as 3.5 wow "
+							+ " such char x as \"xcv\" wow "
+							+ " x as 2+3 wow "
+							+ " such int x,y,y, z, trt wow "
+							+ " y as (2+-3) wow "
+							+ " rily (x > y) "
+							+ "    x as null wow "
+							+ " but rily (x != y) {"
+							+ " such int yo as 0 wow "
+							+ " x as  20 wow "
+							+ " } "
+							+ " but f1(x,y,zzz) wow "
+							+ " rily (x != 2*(3+1))"
+							+ "	  x as 20 wow"
+							+ " rily (yew < 2)"
+							+ "   yew as null wow }$";
 					//expr = expr.toString().replaceAll(" ", "");
 					//System.out.println(expr);
 					CharStream in = new ANTLRInputStream(expr);
