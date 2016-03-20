@@ -16,6 +16,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunction_block(@NotNull DogeScriptParser.Function_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction_block(@NotNull DogeScriptParser.Function_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction_call(@NotNull DogeScriptParser.Function_callContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -35,30 +47,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitContinue_condition(@NotNull DogeScriptParser.Continue_conditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAll_possible(@NotNull DogeScriptParser.All_possibleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAll_possible(@NotNull DogeScriptParser.All_possibleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMain(@NotNull DogeScriptParser.MainContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMain(@NotNull DogeScriptParser.MainContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -100,18 +88,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogical_operator(@NotNull DogeScriptParser.Logical_operatorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLogical_operator(@NotNull DogeScriptParser.Logical_operatorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCount_loop_statement(@NotNull DogeScriptParser.Count_loop_statementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -119,6 +95,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCount_loop_statement(@NotNull DogeScriptParser.Count_loop_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLogical_operator(@NotNull DogeScriptParser.Logical_operatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLogical_operator(@NotNull DogeScriptParser.Logical_operatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -155,18 +143,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunction_declaration(@NotNull DogeScriptParser.Function_declarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSingle_all_possible(@NotNull DogeScriptParser.Single_all_possibleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSingle_all_possible(@NotNull DogeScriptParser.Single_all_possibleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -239,6 +215,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStart(@NotNull DogeScriptParser.StartContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAll_possible_statements(@NotNull DogeScriptParser.All_possible_statementsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAll_possible_statements(@NotNull DogeScriptParser.All_possible_statementsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -328,6 +316,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAll_possible_single_statements(@NotNull DogeScriptParser.All_possible_single_statementsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAll_possible_single_statements(@NotNull DogeScriptParser.All_possible_single_statementsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterConditional_statement(@NotNull DogeScriptParser.Conditional_statementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -347,6 +347,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAfterthought_statement(@NotNull DogeScriptParser.Afterthought_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMain_function(@NotNull DogeScriptParser.Main_functionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMain_function(@NotNull DogeScriptParser.Main_functionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -400,13 +412,13 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionblock(@NotNull DogeScriptParser.FunctionblockContext ctx) { }
+	@Override public void enterSource_code(@NotNull DogeScriptParser.Source_codeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionblock(@NotNull DogeScriptParser.FunctionblockContext ctx) { }
+	@Override public void exitSource_code(@NotNull DogeScriptParser.Source_codeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -9,12 +9,10 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-public class Driver {
+public class DriverExpressions {
 
 	public static void main(String[] args) {
-		new MainFrame("DogeScript Midterm Activity").renderView("Main Menu");
-		
-		
+		new MainFrame("DogeScript Midterm Activity").renderView("Main Menu");		
 	}
 
 }

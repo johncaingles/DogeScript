@@ -29,7 +29,24 @@ public class DriverTest {
 							+ " rily (x != 2*(3+1))"
 							+ "	  x as 20 wow"
 							+ " rily (yew < 2)"
-							+ "   yew as null wow }$";
+							+ "   yew as null wow "
+							+ "so (yiz) {"
+							+ "such int x as 0 wow"
+							+ " x as 0.0 wow"
+							+ "}"
+							+ "so(nawp)"
+							+ "x as 0 wow"
+							+ " many( such int x as 0 wow nawp wow x++) {"
+							+ "such int x as 0 wow"
+							+ "}"
+							+ "nice {"
+							+ "such int x as 0 wow"
+							+ "} so(yiz) wow"
+							+ "}"
+							+ " much char func2 (int x, char y) {"
+							+ "   rily (x != y)"
+							+ "		x as y wow }$"
+							;
 					//expr = expr.toString().replaceAll(" ", "");
 					//System.out.println(expr);
 					CharStream in = new ANTLRInputStream(expr);
