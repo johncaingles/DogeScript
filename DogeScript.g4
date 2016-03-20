@@ -2,7 +2,15 @@ grammar DogeScript;
 
 /* CFG */
 //start with main
-start : FuncStarter VoidKeyword MainKeyword OpenParenthesis CloseParenthesis OpenBrace codeblock CloseBrace EndOfFile ;  
+start : main EndOfFile 
+	  | functionblock main EndOfFile
+	  ;  
+
+main : FuncStarter VoidKeyword MainKeyword OpenParenthesis CloseParenthesis OpenBrace codeblock CloseBrace ;
+
+functionblock : function_declaration functionblock
+			  | function_declaration
+			  ;
 
 codeblock : all_possible codeblock
           | all_possible
@@ -110,6 +118,7 @@ top_prior:
     IntLit
     //{System.out.println("returned from bottom: " + $res);}
     | OpenParenthesis expression CloseParenthesis
+    | VarIdentifier
     ;
   
   
