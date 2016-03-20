@@ -8,12 +8,18 @@ public class DriverTest {
 		// TODO Auto-generated method stub
 				try{
 					//ANTLRInputStream input = new ANTLRInputStream( System.in);
-					String expr = "much void main () { such int x as 3.5 wow "
+					String expr = "much int func(int x) {"
+							+ " such int y wow "
+							+ " } "
+							+ " much char func2 (int x, char y) {"
+							+ "   rily (x != y)"
+							+ "		x as y wow }"
+							+ " much void main () { such int x as 3.5 wow "
 							+ " such char x as \"xcv\" wow "
 							+ " x as 2+3 wow "
 							+ " such int x,y,y, z, trt wow "
 							+ " y as (2+-3) wow "
-							+ " rily (x > y) "
+							+ " rily (x > y and (3+ggg > x or c != y)) "
 							+ "    x as null wow "
 							+ " but rily (x != y) {"
 							+ " such int yo as 0 wow "

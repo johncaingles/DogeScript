@@ -52,6 +52,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMain(@NotNull DogeScriptParser.MainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMain(@NotNull DogeScriptParser.MainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLiteral(@NotNull DogeScriptParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -340,18 +352,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMain_function(@NotNull DogeScriptParser.Main_functionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMain_function(@NotNull DogeScriptParser.Main_functionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterEvent_loop_statement(@NotNull DogeScriptParser.Event_loop_statementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -395,6 +395,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTop_prior(@NotNull DogeScriptParser.Top_priorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionblock(@NotNull DogeScriptParser.FunctionblockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionblock(@NotNull DogeScriptParser.FunctionblockContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

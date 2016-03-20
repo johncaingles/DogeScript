@@ -35,18 +35,19 @@ public class DogeScriptParser extends Parser {
 		"CharLit", "Array", "VarIdentifier", "'$'"
 	};
 	public static final int
-		RULE_start = 0, RULE_main_function = 1, RULE_codeblock = 2, RULE_all_possible = 3, 
-		RULE_single_all_possible = 4, RULE_afterthought_statement = 5, RULE_function_declaration = 6, 
-		RULE_function_declaration_paramaters = 7, RULE_variable_declaration = 8, 
-		RULE_literal = 9, RULE_datatype = 10, RULE_variable_instance = 11, RULE_returns_value = 12, 
-		RULE_expression = 13, RULE_low_prior = 14, RULE_high_prior = 15, RULE_signint = 16, 
-		RULE_top_prior = 17, RULE_assignment_statement = 18, RULE_conditional_statement = 19, 
-		RULE_start_condition = 20, RULE_end_condition = 21, RULE_continue_condition = 22, 
-		RULE_condition = 23, RULE_comparison = 24, RULE_logical_operator = 25, 
-		RULE_loop_statement = 26, RULE_event_loop_statement = 27, RULE_count_loop_statement = 28, 
-		RULE_repeatuntil_loop_statement = 29, RULE_function_call = 30, RULE_function_call_parameters = 31;
+		RULE_start = 0, RULE_main = 1, RULE_functionblock = 2, RULE_codeblock = 3, 
+		RULE_all_possible = 4, RULE_single_all_possible = 5, RULE_afterthought_statement = 6, 
+		RULE_function_declaration = 7, RULE_function_declaration_paramaters = 8, 
+		RULE_variable_declaration = 9, RULE_literal = 10, RULE_datatype = 11, 
+		RULE_variable_instance = 12, RULE_returns_value = 13, RULE_expression = 14, 
+		RULE_low_prior = 15, RULE_high_prior = 16, RULE_signint = 17, RULE_top_prior = 18, 
+		RULE_assignment_statement = 19, RULE_conditional_statement = 20, RULE_start_condition = 21, 
+		RULE_end_condition = 22, RULE_continue_condition = 23, RULE_condition = 24, 
+		RULE_comparison = 25, RULE_logical_operator = 26, RULE_loop_statement = 27, 
+		RULE_event_loop_statement = 28, RULE_count_loop_statement = 29, RULE_repeatuntil_loop_statement = 30, 
+		RULE_function_call = 31, RULE_function_call_parameters = 32;
 	public static final String[] ruleNames = {
-		"start", "main_function", "codeblock", "all_possible", "single_all_possible", 
+		"start", "main", "functionblock", "codeblock", "all_possible", "single_all_possible", 
 		"afterthought_statement", "function_declaration", "function_declaration_paramaters", 
 		"variable_declaration", "literal", "datatype", "variable_instance", "returns_value", 
 		"expression", "low_prior", "high_prior", "signint", "top_prior", "assignment_statement", 
@@ -77,8 +78,11 @@ public class DogeScriptParser extends Parser {
 	}
 	public static class StartContext extends ParserRuleContext {
 		public TerminalNode EndOfFile() { return getToken(DogeScriptParser.EndOfFile, 0); }
-		public Main_functionContext main_function() {
-			return getRuleContext(Main_functionContext.class,0);
+		public MainContext main() {
+			return getRuleContext(MainContext.class,0);
+		}
+		public FunctionblockContext functionblock() {
+			return getRuleContext(FunctionblockContext.class,0);
 		}
 		public StartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -98,10 +102,23 @@ public class DogeScriptParser extends Parser {
 		StartContext _localctx = new StartContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_start);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(64); main_function();
-			setState(65); match(EndOfFile);
+			setState(73);
+			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(66); main();
+				setState(67); match(EndOfFile);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(69); functionblock();
+				setState(70); main();
+				setState(71); match(EndOfFile);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -115,7 +132,7 @@ public class DogeScriptParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Main_functionContext extends ParserRuleContext {
+	public static class MainContext extends ParserRuleContext {
 		public TerminalNode CloseBrace() { return getToken(DogeScriptParser.CloseBrace, 0); }
 		public TerminalNode OpenParenthesis() { return getToken(DogeScriptParser.OpenParenthesis, 0); }
 		public TerminalNode CloseParenthesis() { return getToken(DogeScriptParser.CloseParenthesis, 0); }
@@ -126,34 +143,87 @@ public class DogeScriptParser extends Parser {
 		public CodeblockContext codeblock() {
 			return getRuleContext(CodeblockContext.class,0);
 		}
-		public Main_functionContext(ParserRuleContext parent, int invokingState) {
+		public MainContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_main_function; }
+		@Override public int getRuleIndex() { return RULE_main; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DogeScriptListener ) ((DogeScriptListener)listener).enterMain_function(this);
+			if ( listener instanceof DogeScriptListener ) ((DogeScriptListener)listener).enterMain(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof DogeScriptListener ) ((DogeScriptListener)listener).exitMain_function(this);
+			if ( listener instanceof DogeScriptListener ) ((DogeScriptListener)listener).exitMain(this);
 		}
 	}
 
-	public final Main_functionContext main_function() throws RecognitionException {
-		Main_functionContext _localctx = new Main_functionContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_main_function);
+	public final MainContext main() throws RecognitionException {
+		MainContext _localctx = new MainContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_main);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67); match(FuncStarter);
-			setState(68); match(VoidKeyword);
-			setState(69); match(MainKeyword);
-			setState(70); match(OpenParenthesis);
-			setState(71); match(CloseParenthesis);
-			setState(72); match(OpenBrace);
-			setState(73); codeblock();
-			setState(74); match(CloseBrace);
+			setState(75); match(FuncStarter);
+			setState(76); match(VoidKeyword);
+			setState(77); match(MainKeyword);
+			setState(78); match(OpenParenthesis);
+			setState(79); match(CloseParenthesis);
+			setState(80); match(OpenBrace);
+			setState(81); codeblock();
+			setState(82); match(CloseBrace);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FunctionblockContext extends ParserRuleContext {
+		public Function_declarationContext function_declaration() {
+			return getRuleContext(Function_declarationContext.class,0);
+		}
+		public FunctionblockContext functionblock() {
+			return getRuleContext(FunctionblockContext.class,0);
+		}
+		public FunctionblockContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_functionblock; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DogeScriptListener ) ((DogeScriptListener)listener).enterFunctionblock(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DogeScriptListener ) ((DogeScriptListener)listener).exitFunctionblock(this);
+		}
+	}
+
+	public final FunctionblockContext functionblock() throws RecognitionException {
+		FunctionblockContext _localctx = new FunctionblockContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_functionblock);
+		try {
+			setState(88);
+			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(84); function_declaration();
+				setState(85); functionblock();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(87); function_declaration();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -190,21 +260,21 @@ public class DogeScriptParser extends Parser {
 
 	public final CodeblockContext codeblock() throws RecognitionException {
 		CodeblockContext _localctx = new CodeblockContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_codeblock);
+		enterRule(_localctx, 6, RULE_codeblock);
 		try {
-			setState(80);
-			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
+			setState(94);
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(76); all_possible();
-				setState(77); codeblock();
+				setState(90); all_possible();
+				setState(91); codeblock();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(79); all_possible();
+				setState(93); all_possible();
 				}
 				break;
 			}
@@ -249,32 +319,32 @@ public class DogeScriptParser extends Parser {
 
 	public final All_possibleContext all_possible() throws RecognitionException {
 		All_possibleContext _localctx = new All_possibleContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_all_possible);
+		enterRule(_localctx, 8, RULE_all_possible);
 		try {
-			setState(86);
-			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			setState(100);
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(82); variable_declaration();
+				setState(96); variable_declaration();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(83); assignment_statement();
+				setState(97); assignment_statement();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(84); conditional_statement();
+				setState(98); conditional_statement();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(85); function_call();
+				setState(99); function_call();
 				}
 				break;
 			}
@@ -322,38 +392,38 @@ public class DogeScriptParser extends Parser {
 
 	public final Single_all_possibleContext single_all_possible() throws RecognitionException {
 		Single_all_possibleContext _localctx = new Single_all_possibleContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_single_all_possible);
+		enterRule(_localctx, 10, RULE_single_all_possible);
 		try {
-			setState(93);
-			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+			setState(107);
+			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(88); variable_declaration();
+				setState(102); variable_declaration();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(89); assignment_statement();
+				setState(103); assignment_statement();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(90); conditional_statement();
+				setState(104); conditional_statement();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(91); loop_statement();
+				setState(105); loop_statement();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(92); function_call();
+				setState(106); function_call();
 				}
 				break;
 			}
@@ -392,20 +462,20 @@ public class DogeScriptParser extends Parser {
 
 	public final Afterthought_statementContext afterthought_statement() throws RecognitionException {
 		Afterthought_statementContext _localctx = new Afterthought_statementContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_afterthought_statement);
+		enterRule(_localctx, 12, RULE_afterthought_statement);
 		try {
-			setState(97);
-			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			setState(111);
+			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(95); assignment_statement();
+				setState(109); assignment_statement();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(96); function_call();
+				setState(110); function_call();
 				}
 				break;
 			}
@@ -453,19 +523,19 @@ public class DogeScriptParser extends Parser {
 
 	public final Function_declarationContext function_declaration() throws RecognitionException {
 		Function_declarationContext _localctx = new Function_declarationContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_function_declaration);
+		enterRule(_localctx, 14, RULE_function_declaration);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99); match(FuncStarter);
-			setState(100); datatype();
-			setState(101); match(VarIdentifier);
-			setState(102); match(OpenParenthesis);
-			setState(103); function_declaration_paramaters();
-			setState(104); match(CloseParenthesis);
-			setState(105); match(OpenBrace);
-			setState(106); codeblock();
-			setState(107); match(CloseBrace);
+			setState(113); match(FuncStarter);
+			setState(114); datatype();
+			setState(115); match(VarIdentifier);
+			setState(116); match(OpenParenthesis);
+			setState(117); function_declaration_paramaters();
+			setState(118); match(CloseParenthesis);
+			setState(119); match(OpenBrace);
+			setState(120); codeblock();
+			setState(121); match(CloseBrace);
 			}
 		}
 		catch (RecognitionException re) {
@@ -504,24 +574,24 @@ public class DogeScriptParser extends Parser {
 
 	public final Function_declaration_paramatersContext function_declaration_paramaters() throws RecognitionException {
 		Function_declaration_paramatersContext _localctx = new Function_declaration_paramatersContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_function_declaration_paramaters);
+		enterRule(_localctx, 16, RULE_function_declaration_paramaters);
 		try {
-			setState(117);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			setState(131);
+			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(109); datatype();
-				setState(110); match(VarIdentifier);
+				setState(123); datatype();
+				setState(124); match(VarIdentifier);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(112); datatype();
-				setState(113); match(VarIdentifier);
-				setState(114); match(Comma);
-				setState(115); function_declaration_paramaters();
+				setState(126); datatype();
+				setState(127); match(VarIdentifier);
+				setState(128); match(Comma);
+				setState(129); function_declaration_paramaters();
 				}
 				break;
 			}
@@ -567,28 +637,28 @@ public class DogeScriptParser extends Parser {
 
 	public final Variable_declarationContext variable_declaration() throws RecognitionException {
 		Variable_declarationContext _localctx = new Variable_declarationContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_variable_declaration);
+		enterRule(_localctx, 18, RULE_variable_declaration);
 		try {
-			setState(131);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+			setState(145);
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(119); match(VarDecStarter);
-				setState(120); datatype();
-				setState(121); variable_instance();
-				setState(122); match(Terminator);
+				setState(133); match(VarDecStarter);
+				setState(134); datatype();
+				setState(135); variable_instance();
+				setState(136); match(Terminator);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(124); match(VarDecStarter);
-				setState(125); datatype();
-				setState(126); match(VarIdentifier);
-				setState(127); match(AssOp);
-				setState(128); returns_value();
-				setState(129); match(Terminator);
+				setState(138); match(VarDecStarter);
+				setState(139); datatype();
+				setState(140); match(VarIdentifier);
+				setState(141); match(AssOp);
+				setState(142); returns_value();
+				setState(143); match(Terminator);
 				}
 				break;
 			}
@@ -626,12 +696,12 @@ public class DogeScriptParser extends Parser {
 
 	public final LiteralContext literal() throws RecognitionException {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_literal);
+		enterRule(_localctx, 20, RULE_literal);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(133);
+			setState(147);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << BoolLit) | (1L << IntLit) | (1L << FloatLit) | (1L << StringLit) | (1L << CharLit))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -671,12 +741,12 @@ public class DogeScriptParser extends Parser {
 
 	public final DatatypeContext datatype() throws RecognitionException {
 		DatatypeContext _localctx = new DatatypeContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_datatype);
+		enterRule(_localctx, 22, RULE_datatype);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(135);
+			setState(149);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IntDataType) | (1L << CharDataType) | (1L << BoolDataType) | (1L << StringDataType))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -717,22 +787,22 @@ public class DogeScriptParser extends Parser {
 
 	public final Variable_instanceContext variable_instance() throws RecognitionException {
 		Variable_instanceContext _localctx = new Variable_instanceContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_variable_instance);
+		enterRule(_localctx, 24, RULE_variable_instance);
 		try {
-			setState(141);
-			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+			setState(155);
+			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(137); match(VarIdentifier);
-				setState(138); match(Comma);
-				setState(139); variable_instance();
+				setState(151); match(VarIdentifier);
+				setState(152); match(Comma);
+				setState(153); variable_instance();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(140); match(VarIdentifier);
+				setState(154); match(VarIdentifier);
 				}
 				break;
 			}
@@ -776,38 +846,38 @@ public class DogeScriptParser extends Parser {
 
 	public final Returns_valueContext returns_value() throws RecognitionException {
 		Returns_valueContext _localctx = new Returns_valueContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_returns_value);
+		enterRule(_localctx, 26, RULE_returns_value);
 		try {
-			setState(148);
-			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+			setState(162);
+			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(143); literal();
+				setState(157); literal();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(144); expression();
+				setState(158); expression();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(145); function_call();
+				setState(159); function_call();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(146); match(VarIdentifier);
+				setState(160); match(VarIdentifier);
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(147); match(NullKeyword);
+				setState(161); match(NullKeyword);
 				}
 				break;
 			}
@@ -843,11 +913,11 @@ public class DogeScriptParser extends Parser {
 
 	public final ExpressionContext expression() throws RecognitionException {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_expression);
+		enterRule(_localctx, 28, RULE_expression);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(150); low_prior();
+			setState(164); low_prior();
 			System.out.println("in expression");
 			}
 		}
@@ -893,39 +963,39 @@ public class DogeScriptParser extends Parser {
 
 	public final Low_priorContext low_prior() throws RecognitionException {
 		Low_priorContext _localctx = new Low_priorContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_low_prior);
+		enterRule(_localctx, 30, RULE_low_prior);
 		int _la;
 		try {
-			setState(164);
-			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+			setState(178);
+			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(153); high_prior();
-				setState(160);
+				setState(167); high_prior();
+				setState(174);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==AddOp || _la==SubOp) {
 					{
-					setState(158);
+					setState(172);
 					switch (_input.LA(1)) {
 					case AddOp:
 						{
-						setState(154); match(AddOp);
-						setState(155); high_prior();
+						setState(168); match(AddOp);
+						setState(169); high_prior();
 						}
 						break;
 					case SubOp:
 						{
-						setState(156); match(SubOp);
-						setState(157); high_prior();
+						setState(170); match(SubOp);
+						setState(171); high_prior();
 						}
 						break;
 					default:
 						throw new NoViableAltException(this);
 					}
 					}
-					setState(162);
+					setState(176);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -934,7 +1004,7 @@ public class DogeScriptParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(163); high_prior();
+				setState(177); high_prior();
 				}
 				break;
 			}
@@ -985,45 +1055,45 @@ public class DogeScriptParser extends Parser {
 
 	public final High_priorContext high_prior() throws RecognitionException {
 		High_priorContext _localctx = new High_priorContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_high_prior);
+		enterRule(_localctx, 32, RULE_high_prior);
 		int _la;
 		try {
-			setState(179);
-			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+			setState(193);
+			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(166); signint();
-				setState(175);
+				setState(180); signint();
+				setState(189);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MulOp) | (1L << DivOp) | (1L << ModOp))) != 0)) {
 					{
-					setState(173);
+					setState(187);
 					switch (_input.LA(1)) {
 					case MulOp:
 						{
-						setState(167); match(MulOp);
-						setState(168); signint();
+						setState(181); match(MulOp);
+						setState(182); signint();
 						}
 						break;
 					case DivOp:
 						{
-						setState(169); match(DivOp);
-						setState(170); signint();
+						setState(183); match(DivOp);
+						setState(184); signint();
 						}
 						break;
 					case ModOp:
 						{
-						setState(171); match(ModOp);
-						setState(172); signint();
+						setState(185); match(ModOp);
+						setState(186); signint();
 						}
 						break;
 					default:
 						throw new NoViableAltException(this);
 					}
 					}
-					setState(177);
+					setState(191);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -1032,7 +1102,7 @@ public class DogeScriptParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(178); signint();
+				setState(192); signint();
 				}
 				break;
 			}
@@ -1068,22 +1138,23 @@ public class DogeScriptParser extends Parser {
 
 	public final SignintContext signint() throws RecognitionException {
 		SignintContext _localctx = new SignintContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_signint);
+		enterRule(_localctx, 34, RULE_signint);
 		try {
-			setState(184);
+			setState(198);
 			switch (_input.LA(1)) {
 			case SubOp:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(181); match(SubOp);
-				setState(182); top_prior();
+				setState(195); match(SubOp);
+				setState(196); top_prior();
 				}
 				break;
 			case OpenParenthesis:
 			case IntLit:
+			case VarIdentifier:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(183); top_prior();
+				setState(197); top_prior();
 				}
 				break;
 			default:
@@ -1108,6 +1179,7 @@ public class DogeScriptParser extends Parser {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
+		public TerminalNode VarIdentifier() { return getToken(DogeScriptParser.VarIdentifier, 0); }
 		public Top_priorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1124,22 +1196,28 @@ public class DogeScriptParser extends Parser {
 
 	public final Top_priorContext top_prior() throws RecognitionException {
 		Top_priorContext _localctx = new Top_priorContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_top_prior);
+		enterRule(_localctx, 36, RULE_top_prior);
 		try {
-			setState(191);
+			setState(206);
 			switch (_input.LA(1)) {
 			case IntLit:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(186); match(IntLit);
+				setState(200); match(IntLit);
 				}
 				break;
 			case OpenParenthesis:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(187); match(OpenParenthesis);
-				setState(188); expression();
-				setState(189); match(CloseParenthesis);
+				setState(201); match(OpenParenthesis);
+				setState(202); expression();
+				setState(203); match(CloseParenthesis);
+				}
+				break;
+			case VarIdentifier:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(205); match(VarIdentifier);
 				}
 				break;
 			default:
@@ -1183,26 +1261,26 @@ public class DogeScriptParser extends Parser {
 
 	public final Assignment_statementContext assignment_statement() throws RecognitionException {
 		Assignment_statementContext _localctx = new Assignment_statementContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_assignment_statement);
+		enterRule(_localctx, 38, RULE_assignment_statement);
 		try {
-			setState(202);
-			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
+			setState(217);
+			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(193); match(VarIdentifier);
-				setState(194); match(AssOp);
-				setState(195); match(VarIdentifier);
-				setState(196); match(Terminator);
+				setState(208); match(VarIdentifier);
+				setState(209); match(AssOp);
+				setState(210); match(VarIdentifier);
+				setState(211); match(Terminator);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(197); match(VarIdentifier);
-				setState(198); match(AssOp);
-				setState(199); returns_value();
-				setState(200); match(Terminator);
+				setState(212); match(VarIdentifier);
+				setState(213); match(AssOp);
+				setState(214); returns_value();
+				setState(215); match(Terminator);
 				}
 				break;
 			}
@@ -1244,36 +1322,36 @@ public class DogeScriptParser extends Parser {
 
 	public final Conditional_statementContext conditional_statement() throws RecognitionException {
 		Conditional_statementContext _localctx = new Conditional_statementContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_conditional_statement);
+		enterRule(_localctx, 40, RULE_conditional_statement);
 		try {
-			setState(215);
-			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
+			setState(230);
+			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(204); start_condition();
+				setState(219); start_condition();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(205); start_condition();
-				setState(206); end_condition();
+				setState(220); start_condition();
+				setState(221); end_condition();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(208); start_condition();
-				setState(209); continue_condition();
+				setState(223); start_condition();
+				setState(224); continue_condition();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(211); start_condition();
-				setState(212); continue_condition();
-				setState(213); end_condition();
+				setState(226); start_condition();
+				setState(227); continue_condition();
+				setState(228); end_condition();
 				}
 				break;
 			}
@@ -1320,42 +1398,42 @@ public class DogeScriptParser extends Parser {
 
 	public final Start_conditionContext start_condition() throws RecognitionException {
 		Start_conditionContext _localctx = new Start_conditionContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_start_condition);
+		enterRule(_localctx, 42, RULE_start_condition);
 		try {
-			setState(239);
-			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
+			setState(254);
+			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(217); match(IfKeyword);
-				setState(218); match(OpenParenthesis);
-				setState(219); condition();
-				setState(220); match(CloseParenthesis);
-				setState(221); single_all_possible();
+				setState(232); match(IfKeyword);
+				setState(233); match(OpenParenthesis);
+				setState(234); condition();
+				setState(235); match(CloseParenthesis);
+				setState(236); single_all_possible();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(223); match(IfKeyword);
-				setState(224); match(OpenParenthesis);
-				setState(225); condition();
-				setState(226); match(CloseParenthesis);
-				setState(227); match(OpenBrace);
-				setState(228); single_all_possible();
-				setState(229); match(CloseBrace);
+				setState(238); match(IfKeyword);
+				setState(239); match(OpenParenthesis);
+				setState(240); condition();
+				setState(241); match(CloseParenthesis);
+				setState(242); match(OpenBrace);
+				setState(243); single_all_possible();
+				setState(244); match(CloseBrace);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(231); match(IfKeyword);
-				setState(232); match(OpenParenthesis);
-				setState(233); condition();
-				setState(234); match(CloseParenthesis);
-				setState(235); match(OpenBrace);
-				setState(236); codeblock();
-				setState(237); match(CloseBrace);
+				setState(246); match(IfKeyword);
+				setState(247); match(OpenParenthesis);
+				setState(248); condition();
+				setState(249); match(CloseParenthesis);
+				setState(250); match(OpenBrace);
+				setState(251); codeblock();
+				setState(252); match(CloseBrace);
 				}
 				break;
 			}
@@ -1402,49 +1480,49 @@ public class DogeScriptParser extends Parser {
 
 	public final End_conditionContext end_condition() throws RecognitionException {
 		End_conditionContext _localctx = new End_conditionContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_end_condition);
+		enterRule(_localctx, 44, RULE_end_condition);
 		try {
-			setState(265);
-			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
+			setState(280);
+			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(241); match(ElseKeyword);
-				setState(242); match(OpenParenthesis);
-				setState(243); condition();
-				setState(244); match(CloseParenthesis);
-				setState(245); single_all_possible();
+				setState(256); match(ElseKeyword);
+				setState(257); match(OpenParenthesis);
+				setState(258); condition();
+				setState(259); match(CloseParenthesis);
+				setState(260); single_all_possible();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(247); match(ElseKeyword);
-				setState(248); match(OpenParenthesis);
-				setState(249); condition();
-				setState(250); match(CloseParenthesis);
-				setState(251); match(OpenBrace);
-				setState(252); single_all_possible();
-				setState(253); match(CloseBrace);
+				setState(262); match(ElseKeyword);
+				setState(263); match(OpenParenthesis);
+				setState(264); condition();
+				setState(265); match(CloseParenthesis);
+				setState(266); match(OpenBrace);
+				setState(267); single_all_possible();
+				setState(268); match(CloseBrace);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(255); match(ElseKeyword);
-				setState(256); match(OpenParenthesis);
-				setState(257); condition();
-				setState(258); match(CloseParenthesis);
-				setState(259); match(OpenBrace);
-				setState(260); codeblock();
-				setState(261); match(CloseBrace);
+				setState(270); match(ElseKeyword);
+				setState(271); match(OpenParenthesis);
+				setState(272); condition();
+				setState(273); match(CloseParenthesis);
+				setState(274); match(OpenBrace);
+				setState(275); codeblock();
+				setState(276); match(CloseBrace);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(263); match(ElseKeyword);
-				setState(264); single_all_possible();
+				setState(278); match(ElseKeyword);
+				setState(279); single_all_possible();
 				}
 				break;
 			}
@@ -1491,41 +1569,41 @@ public class DogeScriptParser extends Parser {
 
 	public final Continue_conditionContext continue_condition() throws RecognitionException {
 		Continue_conditionContext _localctx = new Continue_conditionContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_continue_condition);
+		enterRule(_localctx, 46, RULE_continue_condition);
 		try {
-			setState(288);
-			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
+			setState(303);
+			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(267); match(ElseIfKeyword);
-				setState(268); match(OpenParenthesis);
-				setState(269); condition();
-				setState(270); match(CloseParenthesis);
-				setState(271); single_all_possible();
+				setState(282); match(ElseIfKeyword);
+				setState(283); match(OpenParenthesis);
+				setState(284); condition();
+				setState(285); match(CloseParenthesis);
+				setState(286); single_all_possible();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(273); match(ElseIfKeyword);
-				setState(274); match(OpenParenthesis);
-				setState(275); condition();
-				setState(276); match(CloseParenthesis);
-				setState(277); single_all_possible();
-				setState(278); match(CloseBrace);
+				setState(288); match(ElseIfKeyword);
+				setState(289); match(OpenParenthesis);
+				setState(290); condition();
+				setState(291); match(CloseParenthesis);
+				setState(292); single_all_possible();
+				setState(293); match(CloseBrace);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(280); match(ElseIfKeyword);
-				setState(281); match(OpenParenthesis);
-				setState(282); condition();
-				setState(283); match(CloseParenthesis);
-				setState(284); match(OpenBrace);
-				setState(285); codeblock();
-				setState(286); match(CloseBrace);
+				setState(295); match(ElseIfKeyword);
+				setState(296); match(OpenParenthesis);
+				setState(297); condition();
+				setState(298); match(CloseParenthesis);
+				setState(299); match(OpenBrace);
+				setState(300); codeblock();
+				setState(301); match(CloseBrace);
 				}
 				break;
 			}
@@ -1576,70 +1654,70 @@ public class DogeScriptParser extends Parser {
 
 	public final ConditionContext condition() throws RecognitionException {
 		ConditionContext _localctx = new ConditionContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_condition);
+		enterRule(_localctx, 48, RULE_condition);
 		try {
-			setState(324);
-			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
+			setState(339);
+			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(290); match(VarIdentifier);
-				setState(291); comparison();
-				setState(292); match(VarIdentifier);
+				setState(305); match(VarIdentifier);
+				setState(306); comparison();
+				setState(307); match(VarIdentifier);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(294); match(VarIdentifier);
-				setState(295); comparison();
-				setState(296); expression();
+				setState(309); match(VarIdentifier);
+				setState(310); comparison();
+				setState(311); expression();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(298); expression();
-				setState(299); comparison();
-				setState(300); match(VarIdentifier);
+				setState(313); expression();
+				setState(314); comparison();
+				setState(315); match(VarIdentifier);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(302); match(OpenParenthesis);
-				setState(303); condition();
-				setState(304); match(CloseParenthesis);
+				setState(317); match(OpenParenthesis);
+				setState(318); condition();
+				setState(319); match(CloseParenthesis);
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(306); match(VarIdentifier);
-				setState(307); comparison();
-				setState(308); match(VarIdentifier);
-				setState(309); logical_operator();
-				setState(310); condition();
+				setState(321); match(VarIdentifier);
+				setState(322); comparison();
+				setState(323); match(VarIdentifier);
+				setState(324); logical_operator();
+				setState(325); condition();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(312); match(VarIdentifier);
-				setState(313); comparison();
-				setState(314); expression();
-				setState(315); logical_operator();
-				setState(316); condition();
+				setState(327); match(VarIdentifier);
+				setState(328); comparison();
+				setState(329); expression();
+				setState(330); logical_operator();
+				setState(331); condition();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(318); expression();
-				setState(319); comparison();
-				setState(320); match(VarIdentifier);
-				setState(321); logical_operator();
-				setState(322); condition();
+				setState(333); expression();
+				setState(334); comparison();
+				setState(335); match(VarIdentifier);
+				setState(336); logical_operator();
+				setState(337); condition();
 				}
 				break;
 			}
@@ -1678,12 +1756,12 @@ public class DogeScriptParser extends Parser {
 
 	public final ComparisonContext comparison() throws RecognitionException {
 		ComparisonContext _localctx = new ComparisonContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_comparison);
+		enterRule(_localctx, 50, RULE_comparison);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(326);
+			setState(341);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EquaOp) | (1L << GreaterThanOp) | (1L << LessThanOp) | (1L << GreaterThanEqualTo) | (1L << LessThanEqualTo) | (1L << NotEqualToOp))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1721,12 +1799,12 @@ public class DogeScriptParser extends Parser {
 
 	public final Logical_operatorContext logical_operator() throws RecognitionException {
 		Logical_operatorContext _localctx = new Logical_operatorContext(_ctx, getState());
-		enterRule(_localctx, 50, RULE_logical_operator);
+		enterRule(_localctx, 52, RULE_logical_operator);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(328);
+			setState(343);
 			_la = _input.LA(1);
 			if ( !(_la==AndOp || _la==OrOp) ) {
 			_errHandler.recoverInline(this);
@@ -1771,26 +1849,26 @@ public class DogeScriptParser extends Parser {
 
 	public final Loop_statementContext loop_statement() throws RecognitionException {
 		Loop_statementContext _localctx = new Loop_statementContext(_ctx, getState());
-		enterRule(_localctx, 52, RULE_loop_statement);
+		enterRule(_localctx, 54, RULE_loop_statement);
 		try {
-			setState(333);
+			setState(348);
 			switch (_input.LA(1)) {
 			case EventLoopKeyword:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(330); event_loop_statement();
+				setState(345); event_loop_statement();
 				}
 				break;
 			case CountLoopKeyword:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(331); count_loop_statement();
+				setState(346); count_loop_statement();
 				}
 				break;
 			case RepeatUntilLoopKeyword:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(332); repeatuntil_loop_statement();
+				setState(347); repeatuntil_loop_statement();
 				}
 				break;
 			default:
@@ -1836,17 +1914,17 @@ public class DogeScriptParser extends Parser {
 
 	public final Event_loop_statementContext event_loop_statement() throws RecognitionException {
 		Event_loop_statementContext _localctx = new Event_loop_statementContext(_ctx, getState());
-		enterRule(_localctx, 54, RULE_event_loop_statement);
+		enterRule(_localctx, 56, RULE_event_loop_statement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(335); match(EventLoopKeyword);
-			setState(336); match(OpenParenthesis);
-			setState(337); condition();
-			setState(338); match(CloseParenthesis);
-			setState(339); match(OpenBrace);
-			setState(340); codeblock();
-			setState(341); match(CloseBrace);
+			setState(350); match(EventLoopKeyword);
+			setState(351); match(OpenParenthesis);
+			setState(352); condition();
+			setState(353); match(CloseParenthesis);
+			setState(354); match(OpenBrace);
+			setState(355); codeblock();
+			setState(356); match(CloseBrace);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1901,40 +1979,40 @@ public class DogeScriptParser extends Parser {
 
 	public final Count_loop_statementContext count_loop_statement() throws RecognitionException {
 		Count_loop_statementContext _localctx = new Count_loop_statementContext(_ctx, getState());
-		enterRule(_localctx, 56, RULE_count_loop_statement);
+		enterRule(_localctx, 58, RULE_count_loop_statement);
 		try {
-			setState(367);
-			switch ( getInterpreter().adaptivePredict(_input,23,_ctx) ) {
+			setState(382);
+			switch ( getInterpreter().adaptivePredict(_input,25,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(343); match(CountLoopKeyword);
-				setState(344); match(OpenParenthesis);
-				setState(345); variable_declaration();
-				setState(346); match(Terminator);
-				setState(347); condition();
-				setState(348); match(Terminator);
-				setState(349); afterthought_statement();
-				setState(350); match(CloseParenthesis);
-				setState(351); match(OpenBrace);
-				setState(352); codeblock();
-				setState(353); match(CloseBrace);
+				setState(358); match(CountLoopKeyword);
+				setState(359); match(OpenParenthesis);
+				setState(360); variable_declaration();
+				setState(361); match(Terminator);
+				setState(362); condition();
+				setState(363); match(Terminator);
+				setState(364); afterthought_statement();
+				setState(365); match(CloseParenthesis);
+				setState(366); match(OpenBrace);
+				setState(367); codeblock();
+				setState(368); match(CloseBrace);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(355); match(CountLoopKeyword);
-				setState(356); match(OpenParenthesis);
-				setState(357); assignment_statement();
-				setState(358); match(Terminator);
-				setState(359); condition();
-				setState(360); match(Terminator);
-				setState(361); afterthought_statement();
-				setState(362); match(CloseParenthesis);
-				setState(363); match(OpenBrace);
-				setState(364); codeblock();
-				setState(365); match(CloseBrace);
+				setState(370); match(CountLoopKeyword);
+				setState(371); match(OpenParenthesis);
+				setState(372); assignment_statement();
+				setState(373); match(Terminator);
+				setState(374); condition();
+				setState(375); match(Terminator);
+				setState(376); afterthought_statement();
+				setState(377); match(CloseParenthesis);
+				setState(378); match(OpenBrace);
+				setState(379); codeblock();
+				setState(380); match(CloseBrace);
 				}
 				break;
 			}
@@ -1980,19 +2058,19 @@ public class DogeScriptParser extends Parser {
 
 	public final Repeatuntil_loop_statementContext repeatuntil_loop_statement() throws RecognitionException {
 		Repeatuntil_loop_statementContext _localctx = new Repeatuntil_loop_statementContext(_ctx, getState());
-		enterRule(_localctx, 58, RULE_repeatuntil_loop_statement);
+		enterRule(_localctx, 60, RULE_repeatuntil_loop_statement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(369); match(RepeatUntilLoopKeyword);
-			setState(370); match(OpenBrace);
-			setState(371); codeblock();
-			setState(372); match(CloseBrace);
-			setState(373); match(EventLoopKeyword);
-			setState(374); match(OpenParenthesis);
-			setState(375); condition();
-			setState(376); match(CloseParenthesis);
-			setState(377); match(Terminator);
+			setState(384); match(RepeatUntilLoopKeyword);
+			setState(385); match(OpenBrace);
+			setState(386); codeblock();
+			setState(387); match(CloseBrace);
+			setState(388); match(EventLoopKeyword);
+			setState(389); match(OpenParenthesis);
+			setState(390); condition();
+			setState(391); match(CloseParenthesis);
+			setState(392); match(Terminator);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2030,15 +2108,15 @@ public class DogeScriptParser extends Parser {
 
 	public final Function_callContext function_call() throws RecognitionException {
 		Function_callContext _localctx = new Function_callContext(_ctx, getState());
-		enterRule(_localctx, 60, RULE_function_call);
+		enterRule(_localctx, 62, RULE_function_call);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(379); match(VarIdentifier);
-			setState(380); match(OpenParenthesis);
-			setState(381); function_call_parameters();
-			setState(382); match(CloseParenthesis);
-			setState(383); match(Terminator);
+			setState(394); match(VarIdentifier);
+			setState(395); match(OpenParenthesis);
+			setState(396); function_call_parameters();
+			setState(397); match(CloseParenthesis);
+			setState(398); match(Terminator);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2076,22 +2154,22 @@ public class DogeScriptParser extends Parser {
 
 	public final Function_call_parametersContext function_call_parameters() throws RecognitionException {
 		Function_call_parametersContext _localctx = new Function_call_parametersContext(_ctx, getState());
-		enterRule(_localctx, 62, RULE_function_call_parameters);
+		enterRule(_localctx, 64, RULE_function_call_parameters);
 		try {
-			setState(390);
-			switch ( getInterpreter().adaptivePredict(_input,24,_ctx) ) {
+			setState(405);
+			switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(385); returns_value();
+				setState(400); returns_value();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(386); returns_value();
-				setState(387); match(Comma);
-				setState(388); function_call_parameters();
+				setState(401); returns_value();
+				setState(402); match(Comma);
+				setState(403); function_call_parameters();
 				}
 				break;
 			}
@@ -2108,141 +2186,147 @@ public class DogeScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\61\u018b\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\61\u019a\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
 		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
-		"\t!\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\5"+
-		"\4S\n\4\3\5\3\5\3\5\3\5\5\5Y\n\5\3\6\3\6\3\6\3\6\3\6\5\6`\n\6\3\7\3\7"+
-		"\5\7d\n\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t"+
-		"\3\t\3\t\3\t\5\tx\n\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n"+
-		"\5\n\u0086\n\n\3\13\3\13\3\f\3\f\3\r\3\r\3\r\3\r\5\r\u0090\n\r\3\16\3"+
-		"\16\3\16\3\16\3\16\5\16\u0097\n\16\3\17\3\17\3\17\3\20\3\20\3\20\3\20"+
-		"\3\20\7\20\u00a1\n\20\f\20\16\20\u00a4\13\20\3\20\5\20\u00a7\n\20\3\21"+
-		"\3\21\3\21\3\21\3\21\3\21\3\21\7\21\u00b0\n\21\f\21\16\21\u00b3\13\21"+
-		"\3\21\5\21\u00b6\n\21\3\22\3\22\3\22\5\22\u00bb\n\22\3\23\3\23\3\23\3"+
-		"\23\3\23\5\23\u00c2\n\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\5\24\u00cd\n\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25"+
-		"\5\25\u00da\n\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\5\26\u00f2\n\26"+
-		"\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u010c\n\27\3\30"+
-		"\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30"+
-		"\3\30\3\30\3\30\3\30\3\30\3\30\5\30\u0123\n\30\3\31\3\31\3\31\3\31\3\31"+
+		"\t!\4\"\t\"\3\2\3\2\3\2\3\2\3\2\3\2\3\2\5\2L\n\2\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\5\4[\n\4\3\5\3\5\3\5\3\5\5\5a\n\5\3\6\3"+
+		"\6\3\6\3\6\5\6g\n\6\3\7\3\7\3\7\3\7\3\7\5\7n\n\7\3\b\3\b\5\br\n\b\3\t"+
+		"\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\5"+
+		"\n\u0086\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3"+
+		"\13\5\13\u0094\n\13\3\f\3\f\3\r\3\r\3\16\3\16\3\16\3\16\5\16\u009e\n\16"+
+		"\3\17\3\17\3\17\3\17\3\17\5\17\u00a5\n\17\3\20\3\20\3\20\3\21\3\21\3\21"+
+		"\3\21\3\21\7\21\u00af\n\21\f\21\16\21\u00b2\13\21\3\21\5\21\u00b5\n\21"+
+		"\3\22\3\22\3\22\3\22\3\22\3\22\3\22\7\22\u00be\n\22\f\22\16\22\u00c1\13"+
+		"\22\3\22\5\22\u00c4\n\22\3\23\3\23\3\23\5\23\u00c9\n\23\3\24\3\24\3\24"+
+		"\3\24\3\24\3\24\5\24\u00d1\n\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25"+
+		"\3\25\5\25\u00dc\n\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
+		"\3\26\5\26\u00e9\n\26\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27"+
+		"\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u0101"+
+		"\n\27\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30"+
+		"\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\5\30\u011b\n\30"+
 		"\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31"+
-		"\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31\3\31"+
-		"\3\31\5\31\u0147\n\31\3\32\3\32\3\33\3\33\3\34\3\34\3\34\5\34\u0150\n"+
-		"\34\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\36\3\36\3\36\3\36\3\36\3"+
-		"\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3"+
-		"\36\3\36\3\36\3\36\3\36\5\36\u0172\n\36\3\37\3\37\3\37\3\37\3\37\3\37"+
-		"\3\37\3\37\3\37\3\37\3 \3 \3 \3 \3 \3 \3!\3!\3!\3!\3!\5!\u0189\n!\3!\2"+
-		"\2\"\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@"+
-		"\2\6\4\2\27\27+.\3\2\4\7\3\2\35\"\3\2#$\u0198\2B\3\2\2\2\4E\3\2\2\2\6"+
-		"R\3\2\2\2\bX\3\2\2\2\n_\3\2\2\2\fc\3\2\2\2\16e\3\2\2\2\20w\3\2\2\2\22"+
-		"\u0085\3\2\2\2\24\u0087\3\2\2\2\26\u0089\3\2\2\2\30\u008f\3\2\2\2\32\u0096"+
-		"\3\2\2\2\34\u0098\3\2\2\2\36\u00a6\3\2\2\2 \u00b5\3\2\2\2\"\u00ba\3\2"+
-		"\2\2$\u00c1\3\2\2\2&\u00cc\3\2\2\2(\u00d9\3\2\2\2*\u00f1\3\2\2\2,\u010b"+
-		"\3\2\2\2.\u0122\3\2\2\2\60\u0146\3\2\2\2\62\u0148\3\2\2\2\64\u014a\3\2"+
-		"\2\2\66\u014f\3\2\2\28\u0151\3\2\2\2:\u0171\3\2\2\2<\u0173\3\2\2\2>\u017d"+
-		"\3\2\2\2@\u0188\3\2\2\2BC\5\4\3\2CD\7\61\2\2D\3\3\2\2\2EF\7\n\2\2FG\7"+
-		"\23\2\2GH\7\24\2\2HI\7)\2\2IJ\7*\2\2JK\7\'\2\2KL\5\6\4\2LM\7(\2\2M\5\3"+
-		"\2\2\2NO\5\b\5\2OP\5\6\4\2PS\3\2\2\2QS\5\b\5\2RN\3\2\2\2RQ\3\2\2\2S\7"+
-		"\3\2\2\2TY\5\22\n\2UY\5&\24\2VY\5(\25\2WY\5> \2XT\3\2\2\2XU\3\2\2\2XV"+
-		"\3\2\2\2XW\3\2\2\2Y\t\3\2\2\2Z`\5\22\n\2[`\5&\24\2\\`\5(\25\2]`\5\66\34"+
-		"\2^`\5> \2_Z\3\2\2\2_[\3\2\2\2_\\\3\2\2\2_]\3\2\2\2_^\3\2\2\2`\13\3\2"+
-		"\2\2ad\5&\24\2bd\5> \2ca\3\2\2\2cb\3\2\2\2d\r\3\2\2\2ef\7\n\2\2fg\5\26"+
-		"\f\2gh\7\60\2\2hi\7)\2\2ij\5\20\t\2jk\7*\2\2kl\7\'\2\2lm\5\6\4\2mn\7("+
-		"\2\2n\17\3\2\2\2op\5\26\f\2pq\7\60\2\2qx\3\2\2\2rs\5\26\f\2st\7\60\2\2"+
-		"tu\7\25\2\2uv\5\20\t\2vx\3\2\2\2wo\3\2\2\2wr\3\2\2\2x\21\3\2\2\2yz\7\t"+
-		"\2\2z{\5\26\f\2{|\5\30\r\2|}\7\b\2\2}\u0086\3\2\2\2~\177\7\t\2\2\177\u0080"+
-		"\5\26\f\2\u0080\u0081\7\60\2\2\u0081\u0082\7\f\2\2\u0082\u0083\5\32\16"+
-		"\2\u0083\u0084\7\b\2\2\u0084\u0086\3\2\2\2\u0085y\3\2\2\2\u0085~\3\2\2"+
-		"\2\u0086\23\3\2\2\2\u0087\u0088\t\2\2\2\u0088\25\3\2\2\2\u0089\u008a\t"+
-		"\3\2\2\u008a\27\3\2\2\2\u008b\u008c\7\60\2\2\u008c\u008d\7\25\2\2\u008d"+
-		"\u0090\5\30\r\2\u008e\u0090\7\60\2\2\u008f\u008b\3\2\2\2\u008f\u008e\3"+
-		"\2\2\2\u0090\31\3\2\2\2\u0091\u0097\5\24\13\2\u0092\u0097\5\34\17\2\u0093"+
-		"\u0097\5> \2\u0094\u0097\7\60\2\2\u0095\u0097\7\26\2\2\u0096\u0091\3\2"+
-		"\2\2\u0096\u0092\3\2\2\2\u0096\u0093\3\2\2\2\u0096\u0094\3\2\2\2\u0096"+
-		"\u0095\3\2\2\2\u0097\33\3\2\2\2\u0098\u0099\5\36\20\2\u0099\u009a\b\17"+
-		"\1\2\u009a\35\3\2\2\2\u009b\u00a2\5 \21\2\u009c\u009d\7\30\2\2\u009d\u00a1"+
-		"\5 \21\2\u009e\u009f\7\31\2\2\u009f\u00a1\5 \21\2\u00a0\u009c\3\2\2\2"+
-		"\u00a0\u009e\3\2\2\2\u00a1\u00a4\3\2\2\2\u00a2\u00a0\3\2\2\2\u00a2\u00a3"+
-		"\3\2\2\2\u00a3\u00a7\3\2\2\2\u00a4\u00a2\3\2\2\2\u00a5\u00a7\5 \21\2\u00a6"+
-		"\u009b\3\2\2\2\u00a6\u00a5\3\2\2\2\u00a7\37\3\2\2\2\u00a8\u00b1\5\"\22"+
-		"\2\u00a9\u00aa\7\32\2\2\u00aa\u00b0\5\"\22\2\u00ab\u00ac\7\33\2\2\u00ac"+
-		"\u00b0\5\"\22\2\u00ad\u00ae\7\34\2\2\u00ae\u00b0\5\"\22\2\u00af\u00a9"+
-		"\3\2\2\2\u00af\u00ab\3\2\2\2\u00af\u00ad\3\2\2\2\u00b0\u00b3\3\2\2\2\u00b1"+
-		"\u00af\3\2\2\2\u00b1\u00b2\3\2\2\2\u00b2\u00b6\3\2\2\2\u00b3\u00b1\3\2"+
-		"\2\2\u00b4\u00b6\5\"\22\2\u00b5\u00a8\3\2\2\2\u00b5\u00b4\3\2\2\2\u00b6"+
-		"!\3\2\2\2\u00b7\u00b8\7\31\2\2\u00b8\u00bb\5$\23\2\u00b9\u00bb\5$\23\2"+
-		"\u00ba\u00b7\3\2\2\2\u00ba\u00b9\3\2\2\2\u00bb#\3\2\2\2\u00bc\u00c2\7"+
-		"+\2\2\u00bd\u00be\7)\2\2\u00be\u00bf\5\34\17\2\u00bf\u00c0\7*\2\2\u00c0"+
-		"\u00c2\3\2\2\2\u00c1\u00bc\3\2\2\2\u00c1\u00bd\3\2\2\2\u00c2%\3\2\2\2"+
-		"\u00c3\u00c4\7\60\2\2\u00c4\u00c5\7\f\2\2\u00c5\u00c6\7\60\2\2\u00c6\u00cd"+
-		"\7\b\2\2\u00c7\u00c8\7\60\2\2\u00c8\u00c9\7\f\2\2\u00c9\u00ca\5\32\16"+
-		"\2\u00ca\u00cb\7\b\2\2\u00cb\u00cd\3\2\2\2\u00cc\u00c3\3\2\2\2\u00cc\u00c7"+
-		"\3\2\2\2\u00cd\'\3\2\2\2\u00ce\u00da\5*\26\2\u00cf\u00d0\5*\26\2\u00d0"+
-		"\u00d1\5,\27\2\u00d1\u00da\3\2\2\2\u00d2\u00d3\5*\26\2\u00d3\u00d4\5."+
-		"\30\2\u00d4\u00da\3\2\2\2\u00d5\u00d6\5*\26\2\u00d6\u00d7\5.\30\2\u00d7"+
-		"\u00d8\5,\27\2\u00d8\u00da\3\2\2\2\u00d9\u00ce\3\2\2\2\u00d9\u00cf\3\2"+
-		"\2\2\u00d9\u00d2\3\2\2\2\u00d9\u00d5\3\2\2\2\u00da)\3\2\2\2\u00db\u00dc"+
-		"\7\r\2\2\u00dc\u00dd\7)\2\2\u00dd\u00de\5\60\31\2\u00de\u00df\7*\2\2\u00df"+
-		"\u00e0\5\n\6\2\u00e0\u00f2\3\2\2\2\u00e1\u00e2\7\r\2\2\u00e2\u00e3\7)"+
-		"\2\2\u00e3\u00e4\5\60\31\2\u00e4\u00e5\7*\2\2\u00e5\u00e6\7\'\2\2\u00e6"+
-		"\u00e7\5\n\6\2\u00e7\u00e8\7(\2\2\u00e8\u00f2\3\2\2\2\u00e9\u00ea\7\r"+
-		"\2\2\u00ea\u00eb\7)\2\2\u00eb\u00ec\5\60\31\2\u00ec\u00ed\7*\2\2\u00ed"+
-		"\u00ee\7\'\2\2\u00ee\u00ef\5\6\4\2\u00ef\u00f0\7(\2\2\u00f0\u00f2\3\2"+
-		"\2\2\u00f1\u00db\3\2\2\2\u00f1\u00e1\3\2\2\2\u00f1\u00e9\3\2\2\2\u00f2"+
-		"+\3\2\2\2\u00f3\u00f4\7\16\2\2\u00f4\u00f5\7)\2\2\u00f5\u00f6\5\60\31"+
-		"\2\u00f6\u00f7\7*\2\2\u00f7\u00f8\5\n\6\2\u00f8\u010c\3\2\2\2\u00f9\u00fa"+
-		"\7\16\2\2\u00fa\u00fb\7)\2\2\u00fb\u00fc\5\60\31\2\u00fc\u00fd\7*\2\2"+
-		"\u00fd\u00fe\7\'\2\2\u00fe\u00ff\5\n\6\2\u00ff\u0100\7(\2\2\u0100\u010c"+
-		"\3\2\2\2\u0101\u0102\7\16\2\2\u0102\u0103\7)\2\2\u0103\u0104\5\60\31\2"+
-		"\u0104\u0105\7*\2\2\u0105\u0106\7\'\2\2\u0106\u0107\5\6\4\2\u0107\u0108"+
-		"\7(\2\2\u0108\u010c\3\2\2\2\u0109\u010a\7\16\2\2\u010a\u010c\5\n\6\2\u010b"+
-		"\u00f3\3\2\2\2\u010b\u00f9\3\2\2\2\u010b\u0101\3\2\2\2\u010b\u0109\3\2"+
-		"\2\2\u010c-\3\2\2\2\u010d\u010e\7\17\2\2\u010e\u010f\7)\2\2\u010f\u0110"+
-		"\5\60\31\2\u0110\u0111\7*\2\2\u0111\u0112\5\n\6\2\u0112\u0123\3\2\2\2"+
-		"\u0113\u0114\7\17\2\2\u0114\u0115\7)\2\2\u0115\u0116\5\60\31\2\u0116\u0117"+
-		"\7*\2\2\u0117\u0118\5\n\6\2\u0118\u0119\7(\2\2\u0119\u0123\3\2\2\2\u011a"+
-		"\u011b\7\17\2\2\u011b\u011c\7)\2\2\u011c\u011d\5\60\31\2\u011d\u011e\7"+
-		"*\2\2\u011e\u011f\7\'\2\2\u011f\u0120\5\6\4\2\u0120\u0121\7(\2\2\u0121"+
-		"\u0123\3\2\2\2\u0122\u010d\3\2\2\2\u0122\u0113\3\2\2\2\u0122\u011a\3\2"+
-		"\2\2\u0123/\3\2\2\2\u0124\u0125\7\60\2\2\u0125\u0126\5\62\32\2\u0126\u0127"+
-		"\7\60\2\2\u0127\u0147\3\2\2\2\u0128\u0129\7\60\2\2\u0129\u012a\5\62\32"+
-		"\2\u012a\u012b\5\34\17\2\u012b\u0147\3\2\2\2\u012c\u012d\5\34\17\2\u012d"+
-		"\u012e\5\62\32\2\u012e\u012f\7\60\2\2\u012f\u0147\3\2\2\2\u0130\u0131"+
-		"\7)\2\2\u0131\u0132\5\60\31\2\u0132\u0133\7*\2\2\u0133\u0147\3\2\2\2\u0134"+
-		"\u0135\7\60\2\2\u0135\u0136\5\62\32\2\u0136\u0137\7\60\2\2\u0137\u0138"+
-		"\5\64\33\2\u0138\u0139\5\60\31\2\u0139\u0147\3\2\2\2\u013a\u013b\7\60"+
-		"\2\2\u013b\u013c\5\62\32\2\u013c\u013d\5\34\17\2\u013d\u013e\5\64\33\2"+
-		"\u013e\u013f\5\60\31\2\u013f\u0147\3\2\2\2\u0140\u0141\5\34\17\2\u0141"+
-		"\u0142\5\62\32\2\u0142\u0143\7\60\2\2\u0143\u0144\5\64\33\2\u0144\u0145"+
-		"\5\60\31\2\u0145\u0147\3\2\2\2\u0146\u0124\3\2\2\2\u0146\u0128\3\2\2\2"+
-		"\u0146\u012c\3\2\2\2\u0146\u0130\3\2\2\2\u0146\u0134\3\2\2\2\u0146\u013a"+
-		"\3\2\2\2\u0146\u0140\3\2\2\2\u0147\61\3\2\2\2\u0148\u0149\t\4\2\2\u0149"+
-		"\63\3\2\2\2\u014a\u014b\t\5\2\2\u014b\65\3\2\2\2\u014c\u0150\58\35\2\u014d"+
-		"\u0150\5:\36\2\u014e\u0150\5<\37\2\u014f\u014c\3\2\2\2\u014f\u014d\3\2"+
-		"\2\2\u014f\u014e\3\2\2\2\u0150\67\3\2\2\2\u0151\u0152\7\20\2\2\u0152\u0153"+
-		"\7)\2\2\u0153\u0154\5\60\31\2\u0154\u0155\7*\2\2\u0155\u0156\7\'\2\2\u0156"+
-		"\u0157\5\6\4\2\u0157\u0158\7(\2\2\u01589\3\2\2\2\u0159\u015a\7\21\2\2"+
-		"\u015a\u015b\7)\2\2\u015b\u015c\5\22\n\2\u015c\u015d\7\b\2\2\u015d\u015e"+
-		"\5\60\31\2\u015e\u015f\7\b\2\2\u015f\u0160\5\f\7\2\u0160\u0161\7*\2\2"+
-		"\u0161\u0162\7\'\2\2\u0162\u0163\5\6\4\2\u0163\u0164\7(\2\2\u0164\u0172"+
-		"\3\2\2\2\u0165\u0166\7\21\2\2\u0166\u0167\7)\2\2\u0167\u0168\5&\24\2\u0168"+
-		"\u0169\7\b\2\2\u0169\u016a\5\60\31\2\u016a\u016b\7\b\2\2\u016b\u016c\5"+
-		"\f\7\2\u016c\u016d\7*\2\2\u016d\u016e\7\'\2\2\u016e\u016f\5\6\4\2\u016f"+
-		"\u0170\7(\2\2\u0170\u0172\3\2\2\2\u0171\u0159\3\2\2\2\u0171\u0165\3\2"+
-		"\2\2\u0172;\3\2\2\2\u0173\u0174\7\22\2\2\u0174\u0175\7\'\2\2\u0175\u0176"+
-		"\5\6\4\2\u0176\u0177\7(\2\2\u0177\u0178\7\20\2\2\u0178\u0179\7)\2\2\u0179"+
-		"\u017a\5\60\31\2\u017a\u017b\7*\2\2\u017b\u017c\7\b\2\2\u017c=\3\2\2\2"+
-		"\u017d\u017e\7\60\2\2\u017e\u017f\7)\2\2\u017f\u0180\5@!\2\u0180\u0181"+
-		"\7*\2\2\u0181\u0182\7\b\2\2\u0182?\3\2\2\2\u0183\u0189\5\32\16\2\u0184"+
-		"\u0185\5\32\16\2\u0185\u0186\7\25\2\2\u0186\u0187\5@!\2\u0187\u0189\3"+
-		"\2\2\2\u0188\u0183\3\2\2\2\u0188\u0184\3\2\2\2\u0189A\3\2\2\2\33RX_cw"+
-		"\u0085\u008f\u0096\u00a0\u00a2\u00a6\u00af\u00b1\u00b5\u00ba\u00c1\u00cc"+
-		"\u00d9\u00f1\u010b\u0122\u0146\u014f\u0171\u0188";
+		"\3\31\3\31\3\31\3\31\3\31\3\31\3\31\5\31\u0132\n\31\3\32\3\32\3\32\3\32"+
+		"\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32"+
+		"\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32"+
+		"\3\32\3\32\5\32\u0156\n\32\3\33\3\33\3\34\3\34\3\35\3\35\3\35\5\35\u015f"+
+		"\n\35\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\36\3\37\3\37\3\37\3\37\3\37"+
+		"\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37\3\37"+
+		"\3\37\3\37\3\37\3\37\3\37\5\37\u0181\n\37\3 \3 \3 \3 \3 \3 \3 \3 \3 \3"+
+		" \3!\3!\3!\3!\3!\3!\3\"\3\"\3\"\3\"\3\"\5\"\u0198\n\"\3\"\2\2#\2\4\6\b"+
+		"\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@B\2\6\4\2\27"+
+		"\27+.\3\2\4\7\3\2\35\"\3\2#$\u01a9\2K\3\2\2\2\4M\3\2\2\2\6Z\3\2\2\2\b"+
+		"`\3\2\2\2\nf\3\2\2\2\fm\3\2\2\2\16q\3\2\2\2\20s\3\2\2\2\22\u0085\3\2\2"+
+		"\2\24\u0093\3\2\2\2\26\u0095\3\2\2\2\30\u0097\3\2\2\2\32\u009d\3\2\2\2"+
+		"\34\u00a4\3\2\2\2\36\u00a6\3\2\2\2 \u00b4\3\2\2\2\"\u00c3\3\2\2\2$\u00c8"+
+		"\3\2\2\2&\u00d0\3\2\2\2(\u00db\3\2\2\2*\u00e8\3\2\2\2,\u0100\3\2\2\2."+
+		"\u011a\3\2\2\2\60\u0131\3\2\2\2\62\u0155\3\2\2\2\64\u0157\3\2\2\2\66\u0159"+
+		"\3\2\2\28\u015e\3\2\2\2:\u0160\3\2\2\2<\u0180\3\2\2\2>\u0182\3\2\2\2@"+
+		"\u018c\3\2\2\2B\u0197\3\2\2\2DE\5\4\3\2EF\7\61\2\2FL\3\2\2\2GH\5\6\4\2"+
+		"HI\5\4\3\2IJ\7\61\2\2JL\3\2\2\2KD\3\2\2\2KG\3\2\2\2L\3\3\2\2\2MN\7\n\2"+
+		"\2NO\7\23\2\2OP\7\24\2\2PQ\7)\2\2QR\7*\2\2RS\7\'\2\2ST\5\b\5\2TU\7(\2"+
+		"\2U\5\3\2\2\2VW\5\20\t\2WX\5\6\4\2X[\3\2\2\2Y[\5\20\t\2ZV\3\2\2\2ZY\3"+
+		"\2\2\2[\7\3\2\2\2\\]\5\n\6\2]^\5\b\5\2^a\3\2\2\2_a\5\n\6\2`\\\3\2\2\2"+
+		"`_\3\2\2\2a\t\3\2\2\2bg\5\24\13\2cg\5(\25\2dg\5*\26\2eg\5@!\2fb\3\2\2"+
+		"\2fc\3\2\2\2fd\3\2\2\2fe\3\2\2\2g\13\3\2\2\2hn\5\24\13\2in\5(\25\2jn\5"+
+		"*\26\2kn\58\35\2ln\5@!\2mh\3\2\2\2mi\3\2\2\2mj\3\2\2\2mk\3\2\2\2ml\3\2"+
+		"\2\2n\r\3\2\2\2or\5(\25\2pr\5@!\2qo\3\2\2\2qp\3\2\2\2r\17\3\2\2\2st\7"+
+		"\n\2\2tu\5\30\r\2uv\7\60\2\2vw\7)\2\2wx\5\22\n\2xy\7*\2\2yz\7\'\2\2z{"+
+		"\5\b\5\2{|\7(\2\2|\21\3\2\2\2}~\5\30\r\2~\177\7\60\2\2\177\u0086\3\2\2"+
+		"\2\u0080\u0081\5\30\r\2\u0081\u0082\7\60\2\2\u0082\u0083\7\25\2\2\u0083"+
+		"\u0084\5\22\n\2\u0084\u0086\3\2\2\2\u0085}\3\2\2\2\u0085\u0080\3\2\2\2"+
+		"\u0086\23\3\2\2\2\u0087\u0088\7\t\2\2\u0088\u0089\5\30\r\2\u0089\u008a"+
+		"\5\32\16\2\u008a\u008b\7\b\2\2\u008b\u0094\3\2\2\2\u008c\u008d\7\t\2\2"+
+		"\u008d\u008e\5\30\r\2\u008e\u008f\7\60\2\2\u008f\u0090\7\f\2\2\u0090\u0091"+
+		"\5\34\17\2\u0091\u0092\7\b\2\2\u0092\u0094\3\2\2\2\u0093\u0087\3\2\2\2"+
+		"\u0093\u008c\3\2\2\2\u0094\25\3\2\2\2\u0095\u0096\t\2\2\2\u0096\27\3\2"+
+		"\2\2\u0097\u0098\t\3\2\2\u0098\31\3\2\2\2\u0099\u009a\7\60\2\2\u009a\u009b"+
+		"\7\25\2\2\u009b\u009e\5\32\16\2\u009c\u009e\7\60\2\2\u009d\u0099\3\2\2"+
+		"\2\u009d\u009c\3\2\2\2\u009e\33\3\2\2\2\u009f\u00a5\5\26\f\2\u00a0\u00a5"+
+		"\5\36\20\2\u00a1\u00a5\5@!\2\u00a2\u00a5\7\60\2\2\u00a3\u00a5\7\26\2\2"+
+		"\u00a4\u009f\3\2\2\2\u00a4\u00a0\3\2\2\2\u00a4\u00a1\3\2\2\2\u00a4\u00a2"+
+		"\3\2\2\2\u00a4\u00a3\3\2\2\2\u00a5\35\3\2\2\2\u00a6\u00a7\5 \21\2\u00a7"+
+		"\u00a8\b\20\1\2\u00a8\37\3\2\2\2\u00a9\u00b0\5\"\22\2\u00aa\u00ab\7\30"+
+		"\2\2\u00ab\u00af\5\"\22\2\u00ac\u00ad\7\31\2\2\u00ad\u00af\5\"\22\2\u00ae"+
+		"\u00aa\3\2\2\2\u00ae\u00ac\3\2\2\2\u00af\u00b2\3\2\2\2\u00b0\u00ae\3\2"+
+		"\2\2\u00b0\u00b1\3\2\2\2\u00b1\u00b5\3\2\2\2\u00b2\u00b0\3\2\2\2\u00b3"+
+		"\u00b5\5\"\22\2\u00b4\u00a9\3\2\2\2\u00b4\u00b3\3\2\2\2\u00b5!\3\2\2\2"+
+		"\u00b6\u00bf\5$\23\2\u00b7\u00b8\7\32\2\2\u00b8\u00be\5$\23\2\u00b9\u00ba"+
+		"\7\33\2\2\u00ba\u00be\5$\23\2\u00bb\u00bc\7\34\2\2\u00bc\u00be\5$\23\2"+
+		"\u00bd\u00b7\3\2\2\2\u00bd\u00b9\3\2\2\2\u00bd\u00bb\3\2\2\2\u00be\u00c1"+
+		"\3\2\2\2\u00bf\u00bd\3\2\2\2\u00bf\u00c0\3\2\2\2\u00c0\u00c4\3\2\2\2\u00c1"+
+		"\u00bf\3\2\2\2\u00c2\u00c4\5$\23\2\u00c3\u00b6\3\2\2\2\u00c3\u00c2\3\2"+
+		"\2\2\u00c4#\3\2\2\2\u00c5\u00c6\7\31\2\2\u00c6\u00c9\5&\24\2\u00c7\u00c9"+
+		"\5&\24\2\u00c8\u00c5\3\2\2\2\u00c8\u00c7\3\2\2\2\u00c9%\3\2\2\2\u00ca"+
+		"\u00d1\7+\2\2\u00cb\u00cc\7)\2\2\u00cc\u00cd\5\36\20\2\u00cd\u00ce\7*"+
+		"\2\2\u00ce\u00d1\3\2\2\2\u00cf\u00d1\7\60\2\2\u00d0\u00ca\3\2\2\2\u00d0"+
+		"\u00cb\3\2\2\2\u00d0\u00cf\3\2\2\2\u00d1\'\3\2\2\2\u00d2\u00d3\7\60\2"+
+		"\2\u00d3\u00d4\7\f\2\2\u00d4\u00d5\7\60\2\2\u00d5\u00dc\7\b\2\2\u00d6"+
+		"\u00d7\7\60\2\2\u00d7\u00d8\7\f\2\2\u00d8\u00d9\5\34\17\2\u00d9\u00da"+
+		"\7\b\2\2\u00da\u00dc\3\2\2\2\u00db\u00d2\3\2\2\2\u00db\u00d6\3\2\2\2\u00dc"+
+		")\3\2\2\2\u00dd\u00e9\5,\27\2\u00de\u00df\5,\27\2\u00df\u00e0\5.\30\2"+
+		"\u00e0\u00e9\3\2\2\2\u00e1\u00e2\5,\27\2\u00e2\u00e3\5\60\31\2\u00e3\u00e9"+
+		"\3\2\2\2\u00e4\u00e5\5,\27\2\u00e5\u00e6\5\60\31\2\u00e6\u00e7\5.\30\2"+
+		"\u00e7\u00e9\3\2\2\2\u00e8\u00dd\3\2\2\2\u00e8\u00de\3\2\2\2\u00e8\u00e1"+
+		"\3\2\2\2\u00e8\u00e4\3\2\2\2\u00e9+\3\2\2\2\u00ea\u00eb\7\r\2\2\u00eb"+
+		"\u00ec\7)\2\2\u00ec\u00ed\5\62\32\2\u00ed\u00ee\7*\2\2\u00ee\u00ef\5\f"+
+		"\7\2\u00ef\u0101\3\2\2\2\u00f0\u00f1\7\r\2\2\u00f1\u00f2\7)\2\2\u00f2"+
+		"\u00f3\5\62\32\2\u00f3\u00f4\7*\2\2\u00f4\u00f5\7\'\2\2\u00f5\u00f6\5"+
+		"\f\7\2\u00f6\u00f7\7(\2\2\u00f7\u0101\3\2\2\2\u00f8\u00f9\7\r\2\2\u00f9"+
+		"\u00fa\7)\2\2\u00fa\u00fb\5\62\32\2\u00fb\u00fc\7*\2\2\u00fc\u00fd\7\'"+
+		"\2\2\u00fd\u00fe\5\b\5\2\u00fe\u00ff\7(\2\2\u00ff\u0101\3\2\2\2\u0100"+
+		"\u00ea\3\2\2\2\u0100\u00f0\3\2\2\2\u0100\u00f8\3\2\2\2\u0101-\3\2\2\2"+
+		"\u0102\u0103\7\16\2\2\u0103\u0104\7)\2\2\u0104\u0105\5\62\32\2\u0105\u0106"+
+		"\7*\2\2\u0106\u0107\5\f\7\2\u0107\u011b\3\2\2\2\u0108\u0109\7\16\2\2\u0109"+
+		"\u010a\7)\2\2\u010a\u010b\5\62\32\2\u010b\u010c\7*\2\2\u010c\u010d\7\'"+
+		"\2\2\u010d\u010e\5\f\7\2\u010e\u010f\7(\2\2\u010f\u011b\3\2\2\2\u0110"+
+		"\u0111\7\16\2\2\u0111\u0112\7)\2\2\u0112\u0113\5\62\32\2\u0113\u0114\7"+
+		"*\2\2\u0114\u0115\7\'\2\2\u0115\u0116\5\b\5\2\u0116\u0117\7(\2\2\u0117"+
+		"\u011b\3\2\2\2\u0118\u0119\7\16\2\2\u0119\u011b\5\f\7\2\u011a\u0102\3"+
+		"\2\2\2\u011a\u0108\3\2\2\2\u011a\u0110\3\2\2\2\u011a\u0118\3\2\2\2\u011b"+
+		"/\3\2\2\2\u011c\u011d\7\17\2\2\u011d\u011e\7)\2\2\u011e\u011f\5\62\32"+
+		"\2\u011f\u0120\7*\2\2\u0120\u0121\5\f\7\2\u0121\u0132\3\2\2\2\u0122\u0123"+
+		"\7\17\2\2\u0123\u0124\7)\2\2\u0124\u0125\5\62\32\2\u0125\u0126\7*\2\2"+
+		"\u0126\u0127\5\f\7\2\u0127\u0128\7(\2\2\u0128\u0132\3\2\2\2\u0129\u012a"+
+		"\7\17\2\2\u012a\u012b\7)\2\2\u012b\u012c\5\62\32\2\u012c\u012d\7*\2\2"+
+		"\u012d\u012e\7\'\2\2\u012e\u012f\5\b\5\2\u012f\u0130\7(\2\2\u0130\u0132"+
+		"\3\2\2\2\u0131\u011c\3\2\2\2\u0131\u0122\3\2\2\2\u0131\u0129\3\2\2\2\u0132"+
+		"\61\3\2\2\2\u0133\u0134\7\60\2\2\u0134\u0135\5\64\33\2\u0135\u0136\7\60"+
+		"\2\2\u0136\u0156\3\2\2\2\u0137\u0138\7\60\2\2\u0138\u0139\5\64\33\2\u0139"+
+		"\u013a\5\36\20\2\u013a\u0156\3\2\2\2\u013b\u013c\5\36\20\2\u013c\u013d"+
+		"\5\64\33\2\u013d\u013e\7\60\2\2\u013e\u0156\3\2\2\2\u013f\u0140\7)\2\2"+
+		"\u0140\u0141\5\62\32\2\u0141\u0142\7*\2\2\u0142\u0156\3\2\2\2\u0143\u0144"+
+		"\7\60\2\2\u0144\u0145\5\64\33\2\u0145\u0146\7\60\2\2\u0146\u0147\5\66"+
+		"\34\2\u0147\u0148\5\62\32\2\u0148\u0156\3\2\2\2\u0149\u014a\7\60\2\2\u014a"+
+		"\u014b\5\64\33\2\u014b\u014c\5\36\20\2\u014c\u014d\5\66\34\2\u014d\u014e"+
+		"\5\62\32\2\u014e\u0156\3\2\2\2\u014f\u0150\5\36\20\2\u0150\u0151\5\64"+
+		"\33\2\u0151\u0152\7\60\2\2\u0152\u0153\5\66\34\2\u0153\u0154\5\62\32\2"+
+		"\u0154\u0156\3\2\2\2\u0155\u0133\3\2\2\2\u0155\u0137\3\2\2\2\u0155\u013b"+
+		"\3\2\2\2\u0155\u013f\3\2\2\2\u0155\u0143\3\2\2\2\u0155\u0149\3\2\2\2\u0155"+
+		"\u014f\3\2\2\2\u0156\63\3\2\2\2\u0157\u0158\t\4\2\2\u0158\65\3\2\2\2\u0159"+
+		"\u015a\t\5\2\2\u015a\67\3\2\2\2\u015b\u015f\5:\36\2\u015c\u015f\5<\37"+
+		"\2\u015d\u015f\5> \2\u015e\u015b\3\2\2\2\u015e\u015c\3\2\2\2\u015e\u015d"+
+		"\3\2\2\2\u015f9\3\2\2\2\u0160\u0161\7\20\2\2\u0161\u0162\7)\2\2\u0162"+
+		"\u0163\5\62\32\2\u0163\u0164\7*\2\2\u0164\u0165\7\'\2\2\u0165\u0166\5"+
+		"\b\5\2\u0166\u0167\7(\2\2\u0167;\3\2\2\2\u0168\u0169\7\21\2\2\u0169\u016a"+
+		"\7)\2\2\u016a\u016b\5\24\13\2\u016b\u016c\7\b\2\2\u016c\u016d\5\62\32"+
+		"\2\u016d\u016e\7\b\2\2\u016e\u016f\5\16\b\2\u016f\u0170\7*\2\2\u0170\u0171"+
+		"\7\'\2\2\u0171\u0172\5\b\5\2\u0172\u0173\7(\2\2\u0173\u0181\3\2\2\2\u0174"+
+		"\u0175\7\21\2\2\u0175\u0176\7)\2\2\u0176\u0177\5(\25\2\u0177\u0178\7\b"+
+		"\2\2\u0178\u0179\5\62\32\2\u0179\u017a\7\b\2\2\u017a\u017b\5\16\b\2\u017b"+
+		"\u017c\7*\2\2\u017c\u017d\7\'\2\2\u017d\u017e\5\b\5\2\u017e\u017f\7(\2"+
+		"\2\u017f\u0181\3\2\2\2\u0180\u0168\3\2\2\2\u0180\u0174\3\2\2\2\u0181="+
+		"\3\2\2\2\u0182\u0183\7\22\2\2\u0183\u0184\7\'\2\2\u0184\u0185\5\b\5\2"+
+		"\u0185\u0186\7(\2\2\u0186\u0187\7\20\2\2\u0187\u0188\7)\2\2\u0188\u0189"+
+		"\5\62\32\2\u0189\u018a\7*\2\2\u018a\u018b\7\b\2\2\u018b?\3\2\2\2\u018c"+
+		"\u018d\7\60\2\2\u018d\u018e\7)\2\2\u018e\u018f\5B\"\2\u018f\u0190\7*\2"+
+		"\2\u0190\u0191\7\b\2\2\u0191A\3\2\2\2\u0192\u0198\5\34\17\2\u0193\u0194"+
+		"\5\34\17\2\u0194\u0195\7\25\2\2\u0195\u0196\5B\"\2\u0196\u0198\3\2\2\2"+
+		"\u0197\u0192\3\2\2\2\u0197\u0193\3\2\2\2\u0198C\3\2\2\2\35KZ`fmq\u0085"+
+		"\u0093\u009d\u00a4\u00ae\u00b0\u00b4\u00bd\u00bf\u00c3\u00c8\u00d0\u00db"+
+		"\u00e8\u0100\u011a\u0131\u0155\u015e\u0180\u0197";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
