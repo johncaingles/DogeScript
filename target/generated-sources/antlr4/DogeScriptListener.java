@@ -278,6 +278,16 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitAfterthought_statement(@NotNull DogeScriptParser.Afterthought_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#main_function}.
+	 * @param ctx the parse tree
+	 */
+	void enterMain_function(@NotNull DogeScriptParser.Main_functionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#main_function}.
+	 * @param ctx the parse tree
+	 */
+	void exitMain_function(@NotNull DogeScriptParser.Main_functionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#event_loop_statement}.
 	 * @param ctx the parse tree
 	 */

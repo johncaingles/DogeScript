@@ -2,7 +2,9 @@ grammar DogeScript;
 
 /* CFG */
 //start with main
-start : FuncStarter VoidKeyword MainKeyword OpenParenthesis CloseParenthesis OpenBrace codeblock CloseBrace EndOfFile ;  
+start : main_function EndOfFile;
+	  
+main_function : FuncStarter VoidKeyword MainKeyword OpenParenthesis CloseParenthesis OpenBrace codeblock CloseBrace;
 
 codeblock : all_possible codeblock
           | all_possible
