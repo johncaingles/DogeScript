@@ -9,20 +9,28 @@ import java.util.ArrayList;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.gui.TreeViewer;
 
-public class TxtFileParserController {
+public class PerLineParserController implements IParserController {
 	
-	private TxtFileParserView view;
+	private IParserView view;
+	private MainFrame mainFrame;
 	private ArrayList<String> listOfInputs;
 	private ArrayList<String> listOfOutputs;
 	
-	public TxtFileParserController(TxtFileParserView view) {
-		this.view = view;
+	public PerLineParserController(MainFrame mainFrame) {
+		this.mainFrame = mainFrame;
 		
 		listOfInputs = new ArrayList<>();
 		listOfOutputs = new ArrayList<>();
 	}
-
+	
+	@Override
+	public void setView(IParserView view) {
+		this.view = view;
+	}
+	
+	@Override
 	public String readInputFile(String filepath) {
         	String outputString="";
         	
@@ -63,8 +71,9 @@ public class TxtFileParserController {
 	        
 	        return outputString;
 	}
-
-	public String getResultFromListOfInputs() {
+	
+	@Override
+	public String getOutput() {
 		String outputString="";
 		String outputPerLine="";
 		for(String input : listOfInputs)
@@ -131,10 +140,17 @@ public class TxtFileParserController {
 	public void clearListOfInputs() {
 		listOfInputs = new ArrayList<String>();
 	}
-
+	
+	@Override
 	public void reinitializeLists() {
 		listOfInputs = new ArrayList<String>();
 		listOfOutputs = new ArrayList<String>();
+	}
+
+	@Override
+	public TreeViewer getParseTree() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

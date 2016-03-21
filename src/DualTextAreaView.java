@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import java.awt.Component;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.net.URL;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -26,7 +29,9 @@ import javax.swing.Timer;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class TxtFileParserView extends JPanel implements ActionListener, KeyListener, MouseListener {
+import org.antlr.v4.runtime.tree.gui.TreeViewer;
+
+public class DualTextAreaView extends JPanel implements ActionListener, KeyListener, MouseListener, IParserView {
 
 	/** Panel Components */
 	private JFrame mainFrame;
@@ -38,53 +43,60 @@ public class TxtFileParserView extends JPanel implements ActionListener, KeyList
 	private JScrollPane jscrllpnlOutput;
 	private JLabel lblInput;
 	private JLabel lblOutput;
+	private JButton btnShowParseTree;
 	
-	private TxtFileParserController controller; 
+	private IParserController controller; 
 	
-	public TxtFileParserView(MainFrame mainFrame) {
+	public DualTextAreaView(MainFrame mainFrame, IParserController controller) {
 		this.mainFrame = mainFrame;
-		this.setBounds(0, 0, 378, 436);
+		this.setBounds(0, 0, 835, 436);
 		setLayout(null);
 		
-		this.controller = new TxtFileParserController(this);
+		this.controller = controller;
+		controller.setView(this);
 		
 		txtfldFilepath = new JTextField();
-		txtfldFilepath.setBounds(10, 11, 262, 27);
+		txtfldFilepath.setBounds(10, 11, 510, 27);
 		add(txtfldFilepath);
 		txtfldFilepath.setColumns(10);
 		
 		btnBrowse = new JButton("Browse");
-		btnBrowse.setBounds(279, 11, 89, 27);
+		btnBrowse.setBounds(530, 11, 89, 27);
 		btnBrowse.addActionListener(this);
 		add(btnBrowse);
 		
 		txtarInput = new JTextArea();
 		txtarInput.addMouseListener(this);
-		add(txtarInput);
+//		add(txtarInput);
 		
 		jscrllpnlInput = new JScrollPane(txtarInput, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jscrllpnlInput.setBounds(10, 77, 166, 348);
+        jscrllpnlInput.setBounds(10, 87, 404, 338);
         jscrllpnlInput.setVisible(true);
         add(jscrllpnlInput);
 		
 		txtarOutput = new JTextArea();
-		add(txtarOutput);
+//		add(txtarOutput);
 		
 		jscrllpnlOutput=new JScrollPane(txtarOutput, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		jscrllpnlOutput.setBounds(185, 77, 183, 348);
+		jscrllpnlOutput.setBounds(424, 87, 401, 338);
 		jscrllpnlOutput.setVisible(true);
         add(jscrllpnlOutput);
 		
 		lblInput = new JLabel("Input");
 		lblInput.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInput.setBounds(10, 49, 166, 27);
+		lblInput.setBounds(10, 49, 404, 27);
 		lblInput.addMouseListener(this);
 		add(lblInput);
 		
 		lblOutput = new JLabel("Output");
 		lblOutput.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOutput.setBounds(185, 49, 183, 27);
+		lblOutput.setBounds(424, 49, 401, 27);
 		add(lblOutput);
+		
+		btnShowParseTree = new JButton("Show Parse Tree");
+		btnShowParseTree.setBounds(633, 11, 192, 27);
+		btnShowParseTree.addActionListener(this);
+		add(btnShowParseTree);
 	}
 
 	@Override
@@ -141,11 +153,17 @@ public class TxtFileParserView extends JPanel implements ActionListener, KeyList
 			txtarInput.setText(parsedInput);
 			
 			/** Get result  */
-			String results = controller.getResultFromListOfInputs();
+			String results = controller.getOutput();
 			txtarOutput.setText(results);
 			
 			controller.reinitializeLists();
-		}
+		} else
+			if((ae.getSource() == btnShowParseTree)) {
+				JFrame frame = new ParseTreeViewFrame(controller.getParseTree());
+				frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+				frame.setUndecorated(true);
+				frame.setVisible(true);
+			} 
 		
 	}
 
@@ -160,12 +178,12 @@ public class TxtFileParserView extends JPanel implements ActionListener, KeyList
 			JFrame frame = new JFrame("Green Archer");
 			
 			JLabel label;
-			URL url = TxtFileParserView.class.getResource("/sirpogi.jpg");
+			URL url = DualTextAreaView.class.getResource("/sirpogi.jpg");
 			ImageIcon icon1 = new ImageIcon(url);
 			label = new JLabel(icon1);
 			frame.setBounds(0, 0, icon1.getIconWidth(), icon1.getIconHeight());
 			frame.setLocationRelativeTo(null);
-			frame.add(label);
+			frame.getContentPane().add(label);
 			
 			frame.setVisible(true);
 			
@@ -208,5 +226,13 @@ public class TxtFileParserView extends JPanel implements ActionListener, KeyList
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void addTreeView(TreeViewer viewr) {
+		
+        viewr.setScale(1.5);//scale a little
+        this.add(viewr);
+        System.out.println("hi jaylica");        
 	}
 }

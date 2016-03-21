@@ -16,6 +16,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConditionB(@NotNull DogeScriptParser.ConditionBContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionB(@NotNull DogeScriptParser.ConditionBContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction_block(@NotNull DogeScriptParser.Function_blockContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -52,6 +64,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConditionE(@NotNull DogeScriptParser.ConditionEContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionE(@NotNull DogeScriptParser.ConditionEContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLiteral(@NotNull DogeScriptParser.LiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,6 +83,30 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLiteral(@NotNull DogeScriptParser.LiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditionF(@NotNull DogeScriptParser.ConditionFContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionF(@NotNull DogeScriptParser.ConditionFContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -143,6 +191,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunction_declaration(@NotNull DogeScriptParser.Function_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConditionV(@NotNull DogeScriptParser.ConditionVContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionV(@NotNull DogeScriptParser.ConditionVContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

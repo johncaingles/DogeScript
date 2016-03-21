@@ -8,6 +8,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface DogeScriptListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#conditionB}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionB(@NotNull DogeScriptParser.ConditionBContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#conditionB}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionB(@NotNull DogeScriptParser.ConditionBContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#function_block}.
 	 * @param ctx the parse tree
 	 */
@@ -38,6 +48,16 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitContinue_condition(@NotNull DogeScriptParser.Continue_conditionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#conditionE}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionE(@NotNull DogeScriptParser.ConditionEContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#conditionE}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionE(@NotNull DogeScriptParser.ConditionEContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#literal}.
 	 * @param ctx the parse tree
 	 */
@@ -47,6 +67,26 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLiteral(@NotNull DogeScriptParser.LiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#conditionF}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionF(@NotNull DogeScriptParser.ConditionFContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#conditionF}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionF(@NotNull DogeScriptParser.ConditionFContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#comparison_bool_lit}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#comparison_bool_lit}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#function_call_parameters}.
 	 * @param ctx the parse tree
@@ -117,6 +157,16 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunction_declaration(@NotNull DogeScriptParser.Function_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#conditionV}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionV(@NotNull DogeScriptParser.ConditionVContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#conditionV}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionV(@NotNull DogeScriptParser.ConditionVContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#start_condition}.
 	 * @param ctx the parse tree

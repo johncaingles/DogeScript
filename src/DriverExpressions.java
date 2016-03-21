@@ -12,7 +12,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 public class DriverExpressions {
 
 	public static void main(String[] args) {
-		new MainFrame("DogeScript Midterm Activity").renderView("Main Menu");		
+		new MainFrame("DogeScript Midterm Activity").renderView("Per Line");
 	}
 
 }
